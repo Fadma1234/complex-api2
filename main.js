@@ -5,25 +5,25 @@
 //create my event listener and make it run my functions
 //use to functions with fetch inside to get my data
 //make sure th data is working and displayed in the DOM
-//use catch for both my fatches 
+//use catch for both my fegit tches 
 //call second function inside the first one and make sure its working
 //https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert
-//i did all the code by myself and forgot to call my second functiion inside the first one and use chat gpt to find out what was wrong I only needed to check my pseudo code to find out 
+//i had to go back to this and fix it it was only showing one meal and one desert now it shows random ones 
 document.querySelector('button').addEventListener('click', getInfo);
 
 function getInfo() {
-  const meal = document.querySelector('input').value;
+
   const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood`;
 
   fetch(url)
     .then(res => res.json())
     .then(data => {
       console.log(data);
-      
-      document.querySelector('#meal-image').src = data.meals[0].strMealThumb;
+      const randomIndex = Math.floor(Math.random() * data.meals.length);
+      document.querySelector('#meal-image').src = data.meals[randomIndex].strMealThumb;
 
-     
-      getDesrect(); 
+
+      getDesrect();
     });
 }
 
@@ -34,9 +34,9 @@ function getDesrect() {
     .then(res => res.json())
     .then(info => {
       console.log(info);
+      const randomIn = Math.floor(Math.random() * info.meals.length);
 
-     
-      document.querySelector('#dessert-image').src =info.meals[0].strMealThumb;
+      document.querySelector('#dessert-image').src = info.meals[randomIn].strMealThumb;
     });
 }
 
